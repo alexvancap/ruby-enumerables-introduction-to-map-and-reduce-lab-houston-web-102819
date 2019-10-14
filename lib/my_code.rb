@@ -79,9 +79,9 @@ def reduce_to_all_true(source_array)
     if coupon_in_cart
       coupon_in_cart[:count] += 1
     else
-      cart["#{coupon_name} W/COUPON"] = { 
-        price: coupon[:cost], 
-        clearance: cart_item[:clearance], 
+      cart["#{coupon_name} W/COUPON"] = {
+        price: coupon[:cost],
+        clearance: cart_item[:clearance],
         count: 1
       }
     end
@@ -91,7 +91,7 @@ def reduce_to_all_true(source_array)
 
 
 
-  
+
 end
 
 
