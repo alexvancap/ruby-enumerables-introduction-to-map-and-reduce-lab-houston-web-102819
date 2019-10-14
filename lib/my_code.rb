@@ -63,13 +63,35 @@ end
 
 
 def reduce_to_all_true(source_array)
-  value = true
-  source_array.length.times do |index|
-    if (value == true) && (source_array[index] == false)
-      value = false
+
+
+  coupons.each do |coupon|
+    coupon_name = coupon[:item]
+    coupon_item_num = coupon[:num]
+    cart_item = cart[coupon_name]
+
+    next if cart_item.nil? || cart_item[:count] < coupon_item_num
+
+    cart_item[:count] -= coupon_item_num
+
+    coupon_in_cart = cart["#{coupon_name} W/COUPON"]
+
+    if coupon_in_cart
+      coupon_in_cart[:count] += 1
+    else
+      cart["#{coupon_name} W/COUPON"] = { 
+        price: coupon[:cost], 
+        clearance: cart_item[:clearance], 
+        count: 1
+      }
     end
   end
-  value
+
+  cart
+
+
+
+  
 end
 
 
